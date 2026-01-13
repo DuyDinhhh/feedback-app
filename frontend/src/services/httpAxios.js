@@ -4,9 +4,6 @@ const apiHost = window.location.hostname;
 const apiPort = "8000";
 const apiProtocol = window.location.protocol;
 
-console.log("host: ", window.location.host);
-console.log("hostname: ", window.location.hostname);
-
 let baseURL = `${apiProtocol}//${apiHost}:${apiPort}/api/`;
 
 const httpAxios = axios.create({

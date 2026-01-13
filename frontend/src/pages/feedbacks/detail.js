@@ -28,7 +28,7 @@ const SummaryCard = ({
   <div className="flex-1 bg-white rounded-lg p-4 shadow-sm border">
     <div className="flex items-center justify-between">
       <div className="flex-1">
-        <div className="text-sm text-gray-500">{title}</div>
+        <div className="text-base font-bold text-gray-500">{title}</div>
         <div className={`text-2xl font-bold ${color} mt-2`}>{monthValue}</div>
         <div className="mt-1 text-xs text-gray-500">
           Tất cả: <span className="font-semibold">{allTimeValue}</span>
@@ -329,7 +329,7 @@ const StaffFeedbackDetail = () => {
             Phân tích Đánh giá - {staff?.name}
           </h2>
           <nav className="flex items-center text-sm text-gray-500 mt-2">
-            <Link to="/feedbacks/analytics" className="hover:text-gray-700">
+            <Link to="/feedbacks" className="hover:text-gray-700">
               Phân tích Đánh giá
             </Link>
             <span className="mx-2">/</span>
