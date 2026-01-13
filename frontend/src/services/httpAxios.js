@@ -49,7 +49,7 @@ export default httpAxios;
 
 export const getImageUrl = (photo) => {
   const apiProtocol = window.location.protocol;
-  const apiHost = window.location.hostname;
+  const apiHost = window.location.host;
 
   if (photo) {
     return `${apiProtocol}//${apiHost}:8000/images/config/${photo}`;

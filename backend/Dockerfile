@@ -2,15 +2,23 @@ FROM php:8.4-fpm-alpine
 
 # Install dependencies in a single layer with cleanup
 RUN apk add --no-cache \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    libzip-dev \
+    libpng \
+    libjpeg-turbo \
+    freetype \
+    libzip \
     git \
     supervisor \
+    && apk add --no-cache --virtual .build-deps \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        freetype-dev \
+        libzip-dev \
+        autoconf \
+        g++ \
+        make \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) pdo_mysql gd zip \
-    && apk del --purge autoconf g++ make
+    && apk del .build-deps
 
 # Copy composer from official image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -30,9 +38,8 @@ COPY . .
 # Copy environment file
 COPY .env.example .env
 
-# Create directories and set permissions
-RUN mkdir -p storage bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache
+RUN mkdir -p storage bootstrap/cache /var/log/supervisor \
+    && chown -R www-data:www-data storage bootstrap/cache /var/log/supervisor /var/www
 
 # Run post-install scripts if needed
 RUN composer run-script post-install-cmd --no-interaction || true
