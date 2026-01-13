@@ -218,7 +218,7 @@ const ActivityLog = () => {
             <option value="created">created</option>
             <option value="updated">updated</option>
             <option value="deleted">deleted</option>
-            <option value="deleted">error</option>
+            <option value="error">error</option>
 
             {/* <option value="restored">restored</option> */}
           </select>
