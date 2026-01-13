@@ -1,6 +1,5 @@
 import httpAxios from "./httpAxios";
-import axios from "axios";
-
+ 
 const FeedbackService = {
   index: async (page = 1, params = {}) => {
     return await httpAxios.get(`feedback`, {
@@ -12,19 +11,10 @@ const FeedbackService = {
   },
 
   export: async (params = {}) => {
-    const token = localStorage.getItem("token");
-    if (process.env.REACT_APP_ENV === "local") {
-      return await axios.get("http://127.0.0.1:8000/api/feedback/export", {
-        params,
-        responseType: "blob",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-    } else {
-      return await httpAxios.get("feedback/export", {
-        params,
-        responseType: "blob",
-      });
-    }
+    return await httpAxios.get("feedback/export", {
+      params,
+      responseType: "blob",
+    });
   },
 
   getMonthlyStats: async (staffId, month) => {
