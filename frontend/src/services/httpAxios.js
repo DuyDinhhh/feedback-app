@@ -1,11 +1,10 @@
 import axios from "axios";
-
-const apiHost = window.location.hostname;
-const apiPort = "8000";
+ 
+const apiHost = window.location.host;
 const apiProtocol = window.location.protocol;
 
-let baseURL = `${apiProtocol}//${apiHost}:${apiPort}/api/`;
-
+let baseURL = `${apiProtocol}//${apiHost}/api/`;
+ 
 const httpAxios = axios.create({
   baseURL: baseURL,
 });
@@ -52,7 +51,7 @@ export const getImageUrl = (photo) => {
   const apiHost = window.location.host;
 
   if (photo) {
-    return `${apiProtocol}//${apiHost}:8000/images/config/${photo}`;
+    return `${apiProtocol}//${apiHost}/images/config/${photo}`;
   }
   return null;
 };

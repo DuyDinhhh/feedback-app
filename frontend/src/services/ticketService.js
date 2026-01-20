@@ -18,12 +18,10 @@ const TicketService = {
     return await httpAxios.get("ticket/queue_display");
   },
 
-  export: async (params = {}) => {
-    const token = localStorage.getItem("token");
-    return await axios.get("http://127.0.0.1:8000/api/ticket/export", {
+  export: async (params = {}) => { 
+    return await httpAxios.get("ticket/export", {
       params,
       responseType: "blob",
-      headers: { Authorization: `Bearer ${token}` },
     });
   },
 
