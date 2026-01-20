@@ -1,4 +1,5 @@
 import httpAxios from "./httpAxios";
+import axios from "axios";
 
 const FeedbackService = {
   index: async (page = 1, params = {}) => {

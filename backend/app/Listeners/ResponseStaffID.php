@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\Staff;
 use PhpMqtt\Client\Facades\MQTT;
+use Carbon\Carbon;
 
 class ResponseStaffID
 {
@@ -32,7 +33,6 @@ class ResponseStaffID
             ];
             $topic = $data['device_id'] . '/staff_id';
             $staff = Staff::where('username', $data['username'])->first();
-            // Check if staff exists
             if (!$staff) {
                  activity()
                     ->useLog('devicelogin')
